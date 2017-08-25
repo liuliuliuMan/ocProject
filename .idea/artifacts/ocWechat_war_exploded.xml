@@ -67,6 +67,10 @@
           <element id="library" level="project" name="Maven: com.qiniu:happy-dns-java:0.1.4" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
           <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.1" />
+          <element id="library" level="project" name="Maven: com.aliyun.oss:aliyun-sdk-oss:2.8.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4.1" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.1" />
+          <element id="library" level="project" name="Maven: org.jdom:jdom:1.1" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.3" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjtools:1.8.3" />
         </element>

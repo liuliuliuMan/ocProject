@@ -59,6 +59,10 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

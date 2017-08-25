@@ -27,5 +27,20 @@
         </dependency>
 
     </dependencies>
+    <!--注意：在使用IDEA开发时，如果打包时*Mapper.xml没有自动复制到class输出目录的mapper类包下，
+    则需要在pom文件中添加mybatis加载配置文件的配置！-->
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 
 </project>

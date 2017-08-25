@@ -67,6 +67,10 @@
     <orderEntry type="library" name="Maven: com.qiniu:happy-dns-java:0.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.aliyun.oss:aliyun-sdk-oss:2.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jdom:jdom:1.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.aspectj:aspectjrt:1.8.3" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjtools:1.8.3" level="project" />
   </component>
