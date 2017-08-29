@@ -50,6 +50,14 @@
 		WHERE username = #{username, jdbcType=VARCHAR}
 		AND DEL = 0
 	</select>
+
+	<select id="getByUsername2" parameterType="String" resultMap="BeanResultMap">
+		SELECT
+		<include refid="All_Columns"/>
+		FROM t_auth_user
+		WHERE username = #{username}
+		AND DEL=0
+	</select>
 	
 	<insert id="createSelectivity" parameterType="com.online.college.core.auth.domain.AuthUser" flushCache="true"  useGeneratedKeys="true" keyProperty="id"  >
 		INSERT INTO t_auth_user

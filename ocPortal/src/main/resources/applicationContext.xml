@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xmlns:tx="http://www.springframework.org/schema/tx"
-        xmlns:util="http://www.springframework.org/schema/util"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-        xmlns:mvc="http://www.springframework.org/schema/mvc"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
     						http://www.springframework.org/schema/context
    							http://www.springframework.org/schema/context/spring-context-2.5.xsd
@@ -15,7 +15,7 @@
      						http://www.springframework.org/schema/aop
      						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
    							http://www.springframework.org/schema/mvc
-						    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+						    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
     <!-- 默认的注解映射的支持 -->
     <context:annotation-config />
     <context:component-scan base-package="com.online.college">
@@ -62,13 +62,42 @@
         <property name="mapperLocations" value="classpath*:com/**/dao/*Mapper.xml"/>
     </bean>
 
-    <!--<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">-->
-        <!--<constructor-arg index="0" ref="sqlSessionFactory" />-->
-    <!--</bean>-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <property name="basePackage" value="com.**.dao" />
     </bean>
+    <!--<mybatis:scan base-package="com.**.dao" />-->
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="do*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="merge*" propagation="REQUIRED" />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="enable*" propagation="REQUIRED" />
+            <tx:method name="disable*" propagation="REQUIRED" />
+            <tx:method name="generate*" propagation="REQUIRED" />
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config >
+        <aop:pointcut expression="execution (* com.online.college.*.service.*.*(..))"  id="services" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="services" />
+    </aop:config>
+
 
 </beans>
