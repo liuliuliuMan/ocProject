@@ -45,7 +45,19 @@ public class AuthUserServiceImpl implements IAuthUserService {
 
 	@Override
 	public List<AuthUser> queryRecomd() {
-		return null;
+		List<AuthUser> recomdList = entityDao.queryRecomd();
+		String s = "https://oc-bucket.oss-cn-hangzhou.aliyuncs.com/";
+		if(CollectionUtils.isNotEmpty(recomdList)){
+			for(AuthUser item : recomdList){
+				if(StringUtils.isNotEmpty(item.getHeader())){
+					//七牛云图片
+					//item.setHeader(QiniuStorage.getUrl(item.getHeader()));
+					//阿里云图片
+					item.setHeader(s + item.getHeader());
+				}
+			}
+		}
+		return recomdList;
 	}
 
 	public TailPage<AuthUser> queryPage(AuthUser queryEntity , TailPage<AuthUser> page){

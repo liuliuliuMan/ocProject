@@ -1,5 +1,7 @@
 package com.online.college.portal.controller;
 
+import com.online.college.core.auth.domain.AuthUser;
+import com.online.college.core.auth.service.IAuthUserService;
 import com.online.college.core.consts.CourseEnum;
 import com.online.college.core.consts.domain.ConstsSiteCarousel;
 import com.online.college.core.consts.service.IConstsSiteCarouselService;
@@ -27,6 +29,9 @@ public class PortalController {
 
     @Autowired
     private ICourseService courseService;
+
+    @Autowired
+    private IAuthUserService authUserService;
 
     //首页
     @RequestMapping("/index")
@@ -66,8 +71,9 @@ public class PortalController {
         List<Course> javaCourseList = this.courseService.queryList(queryEntity);
         modelAndView.addObject("javaCourseList", javaCourseList);
 
-
-
+        //获得5个讲师推荐
+        List<AuthUser> recomdTeacherList = authUserService.queryRecomd();
+        modelAndView.addObject("recomdTeacherList", recomdTeacherList);
 
         return modelAndView;
     }
