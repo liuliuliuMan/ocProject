@@ -27,7 +27,10 @@ public class AuthUserServiceImpl implements IAuthUserService {
 	*根据username获取
 	**/
 	public AuthUser getByUsername(String username){
-		return entityDao.getByUsername(username);
+		String s = "https://oc-bucket.oss-cn-hangzhou.aliyuncs.com/";
+		AuthUser authUser = entityDao.getByUsername(username);
+		authUser.setHeader(s + authUser.getHeader());
+		return authUser;
 	}
 	
 	
