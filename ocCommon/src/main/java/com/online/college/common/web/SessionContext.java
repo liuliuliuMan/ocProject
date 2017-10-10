@@ -15,10 +15,11 @@ public class SessionContext {
 	public static final String AUTH_USER_KEY = "_consts_auth_user_key_";// 其他人不得占用
 
 	public static Long getUserId(){
-		if(null != getAuthUser()){
-			return getAuthUser().getUserId();
-		}
-		return null;
+		return 1L;
+//		if(null != getAuthUser()){
+//			return getAuthUser().getUserId();
+//		}
+//		return null;
 	}
 	
 	public static String getUsername(){
